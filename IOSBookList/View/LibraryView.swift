@@ -16,12 +16,15 @@ struct LibraryView: View {
             .foregroundColor(.black)
         
         ScrollView{
-            VStack{
+            LazyVStack{
                 ForEach(viewModel.books, id: \.self){ book in
                     
-                    NavigationLink(destination: Text("destination"), isActive: <#T##Binding<Bool>#>, label: <#T##() -> _#>)
-                    
-                    BookCard(book: book)
+                    NavigationLink(
+                        destination:Text("destination"),
+                        label: {
+                            BookCard(book: book)
+                        }
+                    )
                 }
             }
         }
