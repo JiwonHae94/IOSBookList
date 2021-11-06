@@ -9,24 +9,28 @@ import SwiftUI
 
 struct LibraryView: View {
     @ObservedObject var viewModel = BookViewModel()
+    @State var isNavigationActive = true
     
     var body: some View {
-        Text("My Library")
-            .font(.title)
-            .foregroundColor(.black)
-        
-        ScrollView{
-            LazyVStack{
-                ForEach(viewModel.books, id: \.self){ book in
+        NavigationView{
+            ScrollView {
+                Text("My Library")
+                    .font(.title)
+                    .multilineTextAlignment(.leading)
                     
-                    NavigationLink(
-                        destination:Text("destination"),
-                        label: {
-                            BookCard(book: book)
-                        }
-                    )
+                LazyVStack{
+                    ForEach(viewModel.books, id: \.self){ book in
+                        
+                        // MARK: Navigation Link
+                        NavigationLink(
+                            destination: BookDetailView(book: book),
+                            label: {
+                                BookCard(book: book)
+                            })
+                    }
                 }
             }
+            
         }
     }
 }

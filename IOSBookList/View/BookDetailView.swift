@@ -8,30 +8,45 @@
 import SwiftUI
 
 struct BookDetailView: View {
-    var book : Book
-    @State var isToggleOn : Bool
+    @EnvironmentObject var model : BookViewModel
     @State var ratingSelected : Int
+    @State var isFavourite : Bool
+    
+    var book : Book
     
     init(book : Book){
         self.book = book
-        self.ratingSelected = book.rating
-        self.isToggleOn = book.isFavourite
+        self.isFavourite = book.isFavourite
     }
     
     var body: some View {
         VStack(alignment: .center){
-            Text("Read Now!")
-                .font(.title)
-            
-            Image("cover1")
-                .resizable()
-                .frame(width: 300, height: 400)
-                .scaledToFill()
+            NavigationLink(destination: BookContentView(book: book)) {
                 
+                VStack {
+                    Text("Read Now!")
+                        .font(.title)
+                        .accentColor(.black)
+                    
+                    Image("cover\(book.id)")
+                        .resizable()
+                        .scaledToFit()                }
+            }
+            .padding()
+                
+            
             Text("Mark for later!")
-            Toggle(isOn: $isToggleOn){
-                Image(systemName: "star")
-            }.toggleStyle(ButtonToggleStyle())
+                .font(.headline)
+            
+            
+            Button(action: {
+                model.updateIsFavourite(book.id)
+                
+            }, label:{
+                Image(systemName: book.isFavourite ? "star.fill" : "star")
+                    .foregroundColor(.yellow)
+            })
+            
             
             Text("Rate Amazing Words")
                 .bold()

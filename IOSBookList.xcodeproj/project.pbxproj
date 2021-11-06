@@ -20,6 +20,7 @@
 		7CC929FB2736EE7300F8AB56 /* BookData.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CC929FA2736EE7300F8AB56 /* BookData.json */; };
 		7CC929FD2736F2DC00F8AB56 /* BookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC929FC2736F2DC00F8AB56 /* BookViewModel.swift */; };
 		7CC929FF2736F30400F8AB56 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC929FE2736F30400F8AB56 /* DataService.swift */; };
+		7CC92A02273701D600F8AB56 /* BookContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC92A01273701D600F8AB56 /* BookContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		7CC929FA2736EE7300F8AB56 /* BookData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = BookData.json; path = "../../../../../Desktop/code_with_chris/ios_foundations/iOS Foundations 2021/Module 4/Lesson 15/Data and Assets/BookData.json"; sourceTree = "<group>"; };
 		7CC929FC2736F2DC00F8AB56 /* BookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewModel.swift; sourceTree = "<group>"; };
 		7CC929FE2736F30400F8AB56 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		7CC92A01273701D600F8AB56 /* BookContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,8 +149,9 @@
 			isa = PBXGroup;
 			children = (
 				7CC929C72736ED9000F8AB56 /* LibraryView.swift */,
-				7CC929F22736EDCE00F8AB56 /* BookDetailView.swift */,
 				7CC929F52736EE0500F8AB56 /* BookCard.swift */,
+				7CC929F22736EDCE00F8AB56 /* BookDetailView.swift */,
+				7CC92A01273701D600F8AB56 /* BookContentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CC92A02273701D600F8AB56 /* BookContentView.swift in Sources */,
 				7CC929C82736ED9000F8AB56 /* LibraryView.swift in Sources */,
 				7CC929F32736EDCE00F8AB56 /* BookDetailView.swift in Sources */,
 				7CC929FF2736F30400F8AB56 /* DataService.swift in Sources */,

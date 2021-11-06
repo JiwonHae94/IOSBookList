@@ -19,27 +19,43 @@ struct BookCard: View {
             Rectangle()
                 .cornerRadius(10)
                 .foregroundColor(.white)
-                .shadow(radius: 20)
+                .shadow(color: .gray, radius: 5, x: -5, y: 5)
                 
-            VStack(alignment: .leading){
-                Text(book.title)
-                    .font(.largeTitle)
-                    .bold()
-                    .padding([.leading, .bottom, .top], 10)
+            VStack(alignment: .leading, spacing: 10) {
+                HStack {
+                    Text(book.title)
+                        .font(.largeTitle)
+                        .bold()
+                        .multilineTextAlignment(.leading)
+                        .foregroundColor(.black)
+                        .padding([.leading, .bottom, .top], 10)
+                    
+                    Spacer()
+                    
+                    if book.isFavourite {
+                        Image(systemName: "star.fill")
+                            .resizable()
+                            .frame(width: 28, height: 28)
+                            .foregroundColor(.yellow)
+                    }
+                    
+                }
+                
                 
                 Text(book.author)
                     .font(.body)
                     .italic()
+                    .foregroundColor(.black)
                     .padding([.leading, .bottom], 10)
                 
-                Image("cover\(Int.random(in: 1...5))")
+                Image("cover\(book.id)")
                     .resizable()
-                    .clipped()
-                    .aspectRatio(contentMode: .fit)
-                    .padding()
+                    .scaledToFit()
             }
+            .padding()
                 
-        }.padding()
+        }
+        .accentColor(.black)
     }
 }
 
