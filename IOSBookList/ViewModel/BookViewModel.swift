@@ -32,12 +32,34 @@ class BookViewModel : ObservableObject{
     }
     
     func updateIsFavourite(
-        _ forId : Int,
+        _ forId : Int
     ){
         
         var target = getBook(forId)
         if target != nil{
-            target!.isFavourite = !target!.isFavourite
+            target!.isFavourite.toggle()
+        }
+    }
+    
+    func updateRating(
+        forId : Int,
+        rating : Int
+    ){
+        var target = getBook(forId)
+        if target != nil{
+            target!.rating = rating
+            
+        }
+    }
+    
+    func updatePage(
+        forId : Int,
+        page : Int
+    ){
+        var target = getBook(forId)
+        if target != nil{
+            target!.currentPage = page
+            
         }
     }
 }

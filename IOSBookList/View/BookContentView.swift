@@ -23,8 +23,6 @@ struct BookContentView: View {
                     Text("\(page + 1)")
                 }
                 .padding()
-                
-                
             }
         }.tabViewStyle(PageTabViewStyle())
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .never))

@@ -14,16 +14,13 @@ struct LibraryView: View {
     var body: some View {
         NavigationView{
             ScrollView {
-                Text("My Library")
-                    .font(.title)
-                    .multilineTextAlignment(.leading)
                     
                 LazyVStack{
                     ForEach(viewModel.books, id: \.self){ book in
                         
                         // MARK: Navigation Link
                         NavigationLink(
-                            destination: BookDetailView(book: book),
+                            destination: BookDetailView(book: book).environmentObject(viewModel),
                             label: {
                                 BookCard(book: book)
                             })
@@ -32,6 +29,7 @@ struct LibraryView: View {
             }
             
         }
+        .navigationTitle("My Library")
     }
 }
 

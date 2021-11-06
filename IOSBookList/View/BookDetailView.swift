@@ -17,6 +17,7 @@ struct BookDetailView: View {
     init(book : Book){
         self.book = book
         self.isFavourite = book.isFavourite
+        self.ratingSelected = book.rating
     }
     
     var body: some View {
@@ -41,7 +42,6 @@ struct BookDetailView: View {
             
             Button(action: {
                 model.updateIsFavourite(book.id)
-                
             }, label:{
                 Image(systemName: book.isFavourite ? "star.fill" : "star")
                     .foregroundColor(.yellow)
@@ -59,6 +59,9 @@ struct BookDetailView: View {
                 Text("5").tag(5)
             }.pickerStyle(SegmentedPickerStyle())
                 .frame(width: 300)
+                .onChange(of: ratingSelected, perform: { value in
+                    model.updateRating(forId: book.id, rating: value)
+                })
             
         }.navigationTitle(book.title)
 
