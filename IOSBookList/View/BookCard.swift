@@ -10,10 +10,6 @@ import SwiftUI
 struct BookCard: View {
     var book : Book
     
-    init(book : Book){
-        self.book = book
-    }
-    
     var body: some View {
         ZStack{
             Rectangle()
@@ -56,11 +52,5 @@ struct BookCard: View {
                 
         }
         .accentColor(.black)
-    }
-}
-
-struct BookCard_Previews: PreviewProvider {
-    static var previews: some View {
-        BookCard(book: Book(id: 1, title: "Amazing Words", author: "Sir Prise Party", content: [""], rating: 1, currentPage: 0, isFavourite: false))
     }
 }

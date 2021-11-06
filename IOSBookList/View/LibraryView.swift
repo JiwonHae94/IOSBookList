@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LibraryView: View {
-    @ObservedObject var viewModel = BookViewModel()
+    @EnvironmentObject var viewModel : BookViewModel
     @State var isNavigationActive = true
     
     var body: some View {
@@ -16,25 +16,23 @@ struct LibraryView: View {
             ScrollView {
                     
                 LazyVStack{
-                    ForEach(viewModel.books, id: \.self){ book in
+                    ForEach(viewModel.books){ book in
                         
                         // MARK: Navigation Link
-                        NavigationLink(
-                            destination: BookDetailView(book: book).environmentObject(viewModel),
-                            label: {
-                                BookCard(book: book)
-                            })
+                        NavigationLink(destination: BookDetailView(book: book)) {
+                                BookCard(book: book).padding([.leading, .trailing], 20)
+                            }
                     }
-                }
+                }.padding(.top)
             }
             
+            .navigationTitle("My Library")
         }
-        .navigationTitle("My Library")
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        LibraryView()
+        LibraryView().environmentObject(BookViewModel())
     }
 }

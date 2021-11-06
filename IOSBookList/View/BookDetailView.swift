@@ -8,20 +8,13 @@
 import SwiftUI
 
 struct BookDetailView: View {
-    @EnvironmentObject var model : BookViewModel
-    @State var ratingSelected : Int
-    @State var isFavourite : Bool
+    @EnvironmentObject var model: BookViewModel
+    @State private var rating = 2
     
-    var book : Book
-    
-    init(book : Book){
-        self.book = book
-        self.isFavourite = book.isFavourite
-        self.ratingSelected = book.rating
-    }
+    var book: Book
     
     var body: some View {
-        VStack(alignment: .center){
+        VStack(spacing: 20){
             NavigationLink(destination: BookContentView(book: book)) {
                 
                 VStack {
@@ -41,17 +34,18 @@ struct BookDetailView: View {
             
             
             Button(action: {
-                model.updateIsFavourite(book.id)
+                model.updateIsFavourite(forId: book.id)
             }, label:{
                 Image(systemName: book.isFavourite ? "star.fill" : "star")
-                    .foregroundColor(.yellow)
-            })
+                    .resizable()
+                    .frame(width: 28, height: 28)
+            }).accentColor(.yellow)
             
             
-            Text("Rate Amazing Words")
+            Text("Rate \(book.title)")
                 .bold()
                 .padding([.top, .bottom], 20)
-            Picker("", selection : $ratingSelected){
+            Picker("", selection : $rating){
                 Text("1").tag(1)
                 Text("2").tag(2)
                 Text("3").tag(3)
@@ -59,18 +53,15 @@ struct BookDetailView: View {
                 Text("5").tag(5)
             }.pickerStyle(SegmentedPickerStyle())
                 .frame(width: 300)
-                .onChange(of: ratingSelected, perform: { value in
+                .onChange(of: rating, perform: { value in
                     model.updateRating(forId: book.id, rating: value)
                 })
             
-        }.navigationTitle(book.title)
+        }
+        
+        .onAppear{ rating = book.rating }
+        .navigationTitle(book.title)
 
     }
 }
 
-struct BookDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        BookDetailView(book: Book(id: 1, title: "Amazing Words", author: "Sir Prise Party", content: [""], rating: 1, currentPage: 0, isFavourite: false))
-
-    }
-}

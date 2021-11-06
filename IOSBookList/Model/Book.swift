@@ -7,11 +7,14 @@
 
 import Foundation
 
-struct Book : Identifiable, Decodable, Hashable {
-    var id : Int
-    var title, author : String
-    var content : [String]
-    var rating : Int
-    var currentPage : Int
-    var isFavourite : Bool
+struct Book : Decodable, Identifiable {
+    
+    var id = 1
+    var title = "Title"
+    var author = "Author"
+    var content = ["I am a test book."]
+    var isFavourite = false
+    var rating = 2
+    var currentPage = 0
+    
 }

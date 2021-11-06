@@ -10,11 +10,11 @@ import SwiftUI
 struct BookContentView: View {
     @EnvironmentObject var model : BookViewModel
     @State private var page = 0
-    @State var book : Book
+    var book : Book
     
     var body: some View {
         TabView{
-            ForEach(book.content.indices, id: \.self){ index in
+            ForEach(book.content.indices){ index in
                 VStack(alignment: .center) {
                     Text(book.content[index])
                         .tag(index)

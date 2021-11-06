@@ -7,59 +7,40 @@
 
 import Foundation
 
-class BookViewModel : ObservableObject{
+class BookViewModel : ObservableObject {
     @Published var books : [Book]
     
     init(){
-        books = DataService.getLocalData(path: Bundle.main.path(forResource: "BookData", ofType: "json"))
-    }
-    
-    private func getBook(_ forId : Int) -> Book?{
-        return books.first{ b in
-            b.id == forId
-        }
-    }
-    
-    func updateCurrentPage(
-        forId : Int,
-        page : Int
-    ){
-        var target = getBook(forId)
-        
-        if target != nil{
-            target!.currentPage = page
-        }
+        self.books = DataService.getLocalData(path: Bundle.main.path(forResource: "BookData", ofType: "json"))
     }
     
     func updateIsFavourite(
-        _ forId : Int
+        forId : Int
     ){
-        
-        var target = getBook(forId)
-        if target != nil{
-            target!.isFavourite.toggle()
+        if let index = books.firstIndex(where: { $0.id == forId }) {
+            books[index].isFavourite.toggle()
         }
+        
     }
     
     func updateRating(
         forId : Int,
         rating : Int
     ){
-        var target = getBook(forId)
-        if target != nil{
-            target!.rating = rating
+        if let index = books.firstIndex(where: { $0.id == forId }) {
+            books[index].rating = rating
             
         }
+    
     }
     
     func updatePage(
         forId : Int,
         page : Int
     ){
-        var target = getBook(forId)
-        if target != nil{
-            target!.currentPage = page
-            
+        if let index = books.firstIndex(where: { $0.id == forId }) {
+            books[index].currentPage = page
         }
+        
     }
 }
